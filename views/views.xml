@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="gdu_acceso.list">
+      <field name="name">gdu_acceso list</field>
+      <field name="model">gdu_acceso.gdu_acceso</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="gdu_acceso.action_window">
+      <field name="name">gdu_acceso window</field>
+      <field name="res_model">gdu_acceso.gdu_acceso</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="gdu_acceso.action_server">
+      <field name="name">gdu_acceso server</field>
+      <field name="model_id" ref="model_gdu_acceso_gdu_acceso"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="gdu_acceso" id="gdu_acceso.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="gdu_acceso.menu_1" parent="gdu_acceso.menu_root"/>
+    <menuitem name="Menu 2" id="gdu_acceso.menu_2" parent="gdu_acceso.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="gdu_acceso.menu_1_list" parent="gdu_acceso.menu_1"
+              action="gdu_acceso.action_window"/>
+    <menuitem name="Server to list" id="gdu_acceso" parent="gdu_acceso.menu_2"
+              action="gdu_acceso.action_server"/>
+-->
+  </data>
+</odoo>
