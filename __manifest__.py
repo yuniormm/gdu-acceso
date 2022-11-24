@@ -27,6 +27,10 @@
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
+        'views/escaner_views.xml',
+        'views/lista_views.xml',
+        'wizards/wizard_acceso.xml',
+        'views/menu_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_wizard_gduacceso_form" model="ir.ui.view">
+        <field name="name">Wizard Gdu Control de Acceso</field>
+        <field name="model">gdu.acceso.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                <group>
+                    <field name="cod_barras_w" placeholder="Escanee el código"></field>
+                </group>
+                <footer>
+                    <span class="or_cancel" >
+                        <button string="Cancel" type="object" class="btn_secondary"/>
+                    </span>
+                </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_gduacceso_wizard" model="ir.actions.act_window">
+        <field name="name">Gdu Control de Acceso Wizard</field>
+        <field name="res_model">gdu.acceso.wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_wizard_gduacceso_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

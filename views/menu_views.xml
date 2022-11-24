@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+            id="menu_gduacceso_root"
+            name="GDU.Acceso"
+            sequence="1"/>
+
+    <menuitem id="menu_gduacceso_escaner"
+              name="Código de Barras"
+              parent="menu_gduacceso_root"
+              action="action_gduacceso_escaner_view"
+              sequence="4"/>
+
+    <menuitem id="menu_gduacceso_lista"
+              name="Listado de Acceso"
+              parent="menu_gduacceso_root"
+              action="action_gduacceso_lista_view"
+              sequence="5"/>
+    <menuitem id="menu_gduacceso_wizard"
+              name="Escaner wizard"
+              action="action_gduacceso_wizard"
+              parent="menu_gduacceso_root"
+              sequence="6"/>
+</odoo>

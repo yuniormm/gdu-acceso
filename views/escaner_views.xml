@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="view_gduacceso_escaner_form" model="ir.ui.view">
+            <field name="name">view.gdu.acceso.escaner.form</field>
+            <field name="model">gdu.acceso.escaner</field>
+            <field name="arch" type="xml">
+                <form string="Código de barras">
+                    <group>
+                        <field name="cod_barras"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="view_gduacceso_escaner_tree" model="ir.ui.view">
+            <field name="name">view.gdu.acceso.escaner.tree</field>
+            <field name="model">gdu.acceso.escaner</field>
+            <field name="arch" type="xml">
+
+                <tree string="Código de barras">
+                    <field name="cod_barras"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_gduacceso_escaner_view" model="ir.actions.act_window">
+            <field name="name">Código de barras</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">gdu.acceso.escaner</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

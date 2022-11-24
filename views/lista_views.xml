@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_gduacceso_lista_tree" model="ir.ui.view">
+            <field name="name">view.gduacceso.lista.tree</field>
+            <field name="model">gdu.acceso.lista</field>
+            <field name="arch" type="xml">
+                <tree string="Lista de acceso">
+                    <field name="nombre"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_gduacceso_lista_form" model="ir.ui.view">
+            <field name="name">view.gduacceso_lista.form</field>
+            <field name="model">gdu.acceso.lista</field>
+            <field name="arch" type="xml">
+                <form string='Lista de acceso'>
+                    <group>
+                        <field name="nombre"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="action_gduacceso_lista_view" model="ir.actions.act_window">
+            <field name="name">Area</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">gdu.acceso.lista</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

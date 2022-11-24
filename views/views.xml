@@ -3,8 +3,8 @@
     <!-- explicit list view definition -->
 <!--
     <record model="ir.ui.view" id="gdu_acceso.list">
-      <field name="name">gdu_acceso list</field>
-      <field name="model">gdu_acceso.gdu_acceso</field>
+      <field name="name">gdu.acceso.list</field>
+      <field name="model">gdu.acceso</field>
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>
