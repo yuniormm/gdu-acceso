@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/gdu_acceso.iml" filepath="$PROJECT_DIR$/.idea/gdu_acceso.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../gdu_base/.idea/gdu_base.iml" filepath="$PROJECT_DIR$/../gdu_base/.idea/gdu_base.iml" />
     </modules>
   </component>
 </project>

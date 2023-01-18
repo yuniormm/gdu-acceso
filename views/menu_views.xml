@@ -7,15 +7,15 @@
             sequence="1"/>
 
     <menuitem id="menu_gduacceso_escaner"
-              name="Código de Barras"
+              name="Escanear Código de Barras"
               parent="menu_gduacceso_root"
               action="action_gduacceso_escaner_view"
               sequence="4"/>
 
-    <menuitem id="menu_gduacceso_lista"
-              name="Listado de Acceso"
+    <menuitem id="menu_gduacceso_logs"
+              name="Logs de Acceso"
               parent="menu_gduacceso_root"
-              action="action_gduacceso_lista_view"
+              action="action_gduacceso_logs_view"
               sequence="5"/>
     <menuitem id="menu_gduacceso_wizard"
               name="Escaner wizard"

@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_gdu_acceso_gdu_acceso,gdu_acceso.gdu_acceso,model_gdu_acceso_gdu_acceso,base.group_user,1,1,1,1
+access_gdu_acceso_logs,"GDU Acceso Logs",model_gdu_acceso_logs,base.group_user,,1,1,1,1
+access_gdu_acceso_escaner,"GDU Acceso Scan",model_gdu_acceso_escaner,base.group_user,,1,1,1,1

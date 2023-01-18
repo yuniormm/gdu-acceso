@@ -28,7 +28,7 @@
         'views/views.xml',
         'views/templates.xml',
         'views/escaner_views.xml',
-        'views/lista_views.xml',
+        'views/logs_views.xml',
         'wizards/wizard_acceso.xml',
         'views/menu_views.xml',
     ],

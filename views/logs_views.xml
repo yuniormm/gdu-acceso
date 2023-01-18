@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_gduacceso_logs_tree" model="ir.ui.view">
+            <field name="name">view.gduacceso.logs.tree</field>
+            <field name="model">gdu.acceso.logs</field>
+            <field name="arch" type="xml">
+                <tree string="Historial de acceso">
+                    <field name="ci"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_gduacceso_logs_form" model="ir.ui.view">
+            <field name="name">view.gduacceso_logs.form</field>
+            <field name="model">gdu.acceso.logs</field>
+            <field name="arch" type="xml">
+                <form string='Logs de acceso'>
+                    <group>
+                        <field name="ci"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="action_gduacceso_logs_view" model="ir.actions.act_window">
+            <field name="name">Historial de accesos</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">gdu.acceso.logs</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

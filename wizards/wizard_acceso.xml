@@ -6,16 +6,43 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                <group>
-                    <field name="cod_barras_w" placeholder="Escanee el código"></field>
-                </group>
-                <footer>
-                    <span class="or_cancel" >
-                        <button string="Cancel" type="object" class="btn_secondary"/>
-                    </span>
-                </footer>
+                    <group>
+                        <field name="cod_barras_w" placeholder="Escanee el código"></field>
+                    </group>
+                    <footer>
+                        <span class="or_cancel">
+                            <button name="f_cancel" string="Cancel" type="object" class="btn_secondary"/>
+                        </span>
+                    </footer>
                 </sheet>
             </form>
+            <xpath expr="//field[@name='cod_barras']" position="attributes">
+                <attribute name="size">11</attribute>
+                <attribute name="maxlength">11</attribute>
+            </xpath>
+            <xpath expr="//div[hasclass('o_list_view')]" position='before'>
+                <button class="btn-sm btn-link mb4 fa fa-volume-control-phone"
+                        aria-label="Llamar"
+                        title="Llamar"
+                        style="font-size: 15px;"
+                />
+            </xpath>
+            <xpath expr="//div[hasclass('o_form_sheet_bg')]" position="after">
+                <br/>
+                <br/>
+                <span>aaaaaaaaaaaaaaaaaaaa</span>
+                <span>bbbbbbbbbbbbbbbbbbb</span>
+            </xpath>
+            <xpath expr="//div[hasclass('o_form_sheet_bg')]" position="inside">
+                <script>
+                    function limpia() {
+                    if (document.getElementsByName("cod_barras_w")[0]){
+                    document.getElementsByName("cod_barras_w")[0].value = "";
+                    }
+                    }
+                    setInterval(limpia, 3000);
+                </script>
+            </xpath>
         </field>
     </record>
 

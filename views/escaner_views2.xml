@@ -5,7 +5,7 @@
             <field name="name">view.gdu.acceso.escaner.form</field>
             <field name="model">gdu.acceso.escaner</field>
             <field name="arch" type="xml">
-                <button name="f_search" string="BuscarA" class="oe_highlight" type="object"/>
+                <button name="f_search" string="Buscar" class="oe_highlight" type="object"/>
                 <form string="Código de barras">
                     <group>
                         <field name="cod_barras"/>
@@ -48,7 +48,7 @@
                 <tree string="Código de barras">
                     <field name="cod_barras"/>
                 </tree>
-                <!--<button name="f_search" string="Buscar" class="oe_highlight" type="object"/>-->
+                <button name="f_search" string="Buscar" class="oe_highlight" type="object"/>
 
             </field>
         </record>

@@ -1,0 +1,3 @@
+"Nombre","Objeto","Grupo","Permiso para leer","Permiso de escritura","Acceso para crear","Permiso para eliminar"
+"gdu_acceso.escaner","GDU Acceso Escaner","GDU Acceso / Admin","True","True","True","True"
+"gdu_acceso.logs","GDU Acceso Logs","Sin categoría / GDU Acceso / Admin","True","True","True","True"
