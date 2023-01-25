@@ -6,9 +6,11 @@
             <field name="model">gdu.acceso.escaner</field>
             <field name="arch" type="xml">
                 <button name="f_search" string="BuscarA" class="oe_highlight" type="object"/>
-                <form string="Código de barras">
+                <form string="Código de barras" create="false" edit="false">
                     <group>
-                        <field name="cod_barras"/>
+                        <field name="cod_barras" force_save="0"/>
+                        <field name="nombre"/>
+                        <field name="tipo_persona"/>
                     </group>
                 </form>
                 <xpath expr="//field[@name='cod_barras']" position="attributes">
@@ -16,11 +18,12 @@
                     <attribute name="maxlength">11</attribute>
                 </xpath>
                 <xpath expr="//div[hasclass('o_list_view')]" position='before'>
-                    <button class="btn-sm btn-link mb4 fa fa-volume-control-phone"
+                    <button class="btn-sm btn-link mb4 fa fa-search"
                             aria-label="Llamar"
                             title="Llamar"
                             style="font-size: 15px;"
                     />
+                    <field name="nombre" readonly="1"/>
                 </xpath>
                 <xpath expr="//div[hasclass('o_form_nosheet')]" position="after">
                     <br/>
@@ -30,12 +33,33 @@
                 </xpath>
                 <xpath expr="//div[hasclass('o_form_nosheet')]" position="inside">
                     <script>
+                        console.log(1);
                         function limpia() {
-                            //if (document.getElementsByName("cod_barras")[0].value){
-                            //    document.getElementsByName("cod_barras")[0].value = "";
-                            //}
+                        let codbarras;
+                            try{
+                                codbarras = document.getElementsByName("cod_barras")[0].value.length;
+                            } catch {
+                                codbarras = 0;
+                            }
+                            try{
+                                if (codbarras){
+                                    let el = document.querySelector( ':focus' );
+                                    if( el )
+                                        el.blur();
+                                    document.getElementsByName("cod_barras")[0].value = "";
+                                }else{
+                                    document.getElementsByName("cod_barras")[0].focus();
+                                }
+                            }catch {
+
+                            }
                         }
-                        //setInterval(limpia, 3000);
+                        try {
+                             if(!nIntervId) var nIntervId=setInterval(limpia,3000);
+                        } catch {
+                          clearInterval( nIntervId );
+                        }
+                        //setInterval(limpia,2000);
                     </script>
                 </xpath>
             </field>
@@ -56,7 +80,8 @@
             <field name="name">Código de barras</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">gdu.acceso.escaner</field>
-            <field name="view_mode">tree,form</field>
+            <field name="target">inline</field>
+            <field name="view_mode">form,tree</field>
         </record>
     </data>
 </odoo>
