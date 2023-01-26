@@ -9,10 +9,45 @@
                 <form string="Código de barras" create="false" edit="false">
                     <group>
                         <field name="cod_barras" force_save="0"/>
-                        <field name="nombre"/>
-                        <field name="tipo_persona"/>
                     </group>
+
                 </form>
+
+                <div>
+                    <div class="o_kanban_view o_modules_kanban o_kanban_ungrouped" id="cod_personcontent">
+                        <div class="oe_module_vignette o_kanban_record" tabindex="0" role="article">
+                            <div class="o_dropdown_kanban" tabindex="-1">
+                                <a class="dropdown-toggle o-no-caret btn" data-toggle="dropdown" data-display="static" href="#" role="button" aria-label="Dropdown menu" title="Dropdown menu">
+                                    <span class="fa fa-ellipsis-v"></span>
+                                </a>
+                                <div class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                    <a class="dropdown-item oe_kanban_action oe_kanban_action_a" data-type="edit" href="#">Module Info</a>
+                                    <a role="menuitem" class="dropdown-item" href="http://www.uo.edu.cu" target="_blank">Learn More</a>
+                                    <a role="menuitem" class="dropdown-item oe_kanban_action oe_kanban_action_a" data-name="button_immediate_upgrade" data-type="object" href="#">Upgrade</a>
+                                    <a role="menuitem" class="dropdown-item oe_kanban_action oe_kanban_action_a" data-name="button_uninstall_wizard" data-type="object" href="#">Uninstall</a>
+                                </div>
+                            </div>
+                            <img src="/gdu_base/static/avatar.png" class="oe_module_icon" alt="Icon"></img>
+                            <div class="o_horizontal_separator"><field name="tipo_persona"/></div>
+                            <div class="oe_module_desc" title="gdu_acceso">
+                                <h3 class="o_kanban_record_title">
+                                    <field name="tipo_persona"/>
+                                </h3>
+                                <field name="html"/>
+                                <p class="oe_module_name">
+                                    <field name="nombre"/>
+                                </p>
+                                <div class="oe_module_action">
+                                    <a href="http://www.uo.edu.cu" target="_blank" class="btn btn-sm btn-secondary float-right" role="button" >Learn More</a>
+                                    <div class="text-muted float-left">Installed</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <xpath expr="//input[@name='cod_barras']" position="before">
+                    <i class="fa fa-barcode fa-5x"></i>
+                </xpath>
                 <xpath expr="//field[@name='cod_barras']" position="attributes">
                     <attribute name="size">11</attribute>
                     <attribute name="maxlength">11</attribute>
@@ -23,14 +58,18 @@
                             title="Llamar"
                             style="font-size: 15px;"
                     />
-                    <field name="nombre" readonly="1"/>
                 </xpath>
                 <xpath expr="//div[hasclass('o_form_nosheet')]" position="after">
                     <br/>
                     <br/>
-                    <span>aaaaaaaaaaaaaaaaaaaa</span>
-                    <span>bbbbbbbbbbbbbbbbbbb</span>
+                    <span></span>
+                    <span></span>
                 </xpath>
+                <button brand_icon="fa-amazon-pay" string=" fa-amazon-pay"/>
+
+                <button brand_icon="fas fa-hand-sparkles" string=" fas fa-hand-sparkles"/>
+
+                <button brand_icon="fas fa-handshake-slash" string=" fas fa-handshake-slash"/>
                 <xpath expr="//div[hasclass('o_form_nosheet')]" position="inside">
                     <script>
                         console.log(1);
@@ -46,7 +85,6 @@
                                     let el = document.querySelector( ':focus' );
                                     if( el )
                                         el.blur();
-                                    document.getElementsByName("cod_barras")[0].value = "";
                                 }else{
                                     document.getElementsByName("cod_barras")[0].focus();
                                 }
@@ -55,11 +93,11 @@
                             }
                         }
                         try {
-                             if(!nIntervId) var nIntervId=setInterval(limpia,3000);
+                             if(!nIntervId) var nIntervId=setInterval(limpia,1000);
                         } catch {
                           clearInterval( nIntervId );
                         }
-                        //setInterval(limpia,2000);
+                        //setInterval(limpia,1000);
                     </script>
                 </xpath>
             </field>
