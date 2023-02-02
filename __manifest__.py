@@ -26,9 +26,10 @@
     'data': [
         # 'security/ir.model.access.csv',
         'views/views.xml',
-        'views/templates.xml',
+        #'views/templates.xml',
         'views/escaner_views.xml',
         'views/logs_views.xml',
+        'reports/logs.xml',
         'wizards/wizard_acceso.xml',
         'views/menu_views.xml',
     ],

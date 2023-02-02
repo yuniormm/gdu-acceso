@@ -10,7 +10,9 @@
                     <group>
                         <field name="cod_barras" force_save="0"/>
                     </group>
-
+                    <xpath expr="//field[@name='cod_barras']" position="before">
+                        <i class="fa fa-barcode fa-5x"></i>
+                    </xpath>
                 </form>
 
                 <div>
@@ -45,9 +47,6 @@
                         </div>
                     </div>
                 </div>
-                <xpath expr="//input[@name='cod_barras']" position="before">
-                    <i class="fa fa-barcode fa-5x"></i>
-                </xpath>
                 <xpath expr="//field[@name='cod_barras']" position="attributes">
                     <attribute name="size">11</attribute>
                     <attribute name="maxlength">11</attribute>
@@ -65,11 +64,11 @@
                     <span></span>
                     <span></span>
                 </xpath>
-                <button brand_icon="fa-amazon-pay" string=" fa-amazon-pay"/>
+                <button brand_icon="fa fa-amazon-pay" string="fa fa-amazon-pay"/>
 
-                <button brand_icon="fas fa-hand-sparkles" string=" fas fa-hand-sparkles"/>
+                <button brand_icon="fa fa-hand-sparkles" string=" fa fa-hand-sparkles"/>
 
-                <button brand_icon="fas fa-handshake-slash" string=" fas fa-handshake-slash"/>
+                <button brand_icon="fa fa-handshake-slash" string=" fa fa-handshake-slash"/>
                 <xpath expr="//div[hasclass('o_form_nosheet')]" position="inside">
                     <script>
                         console.log(1);

@@ -5,6 +5,8 @@
             <field name="name">view.gduacceso.logs.tree</field>
             <field name="model">gdu.acceso.logs</field>
             <field name="arch" type="xml">
+                <!--<button name="print_report" type="action" string="Print" class="eo_highlight"/>-->
+                <button name="f_search" string="BuscarA" class="oe_highlight" type="object"/>
                 <tree string="Historial de acceso">
                     <field name="ci"/>
                 </tree>

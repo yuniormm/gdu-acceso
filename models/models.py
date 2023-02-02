@@ -23,6 +23,9 @@ class Acceso(models.Model):
     ci = fields.Char(string="CI", size=11)
     # new_field = fields.Char(string="", required=False, )
 
+    def print_report(self):
+        return self.env.ref('gdu_acceso_logs_report').report_action(self)
+
 
 # Prueba de Escaneo
 class Escaneo(models.TransientModel):
