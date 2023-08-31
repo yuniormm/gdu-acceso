@@ -8,7 +8,7 @@ class GduAcceso(http.Controller):
     def index(self, **kw):
         return "Hello, world"
 
-    @http.route('/gdu_acceso/qr/<code>', auth='public')
+    @http.route('/gdu_acceso/qr2/<code>', auth='public')
     def QR_scaner(self, code, **kw):
         try:
             persona = http.request.env['gdu.base.persona'].sudo().search_read([('ci', '=', str(code)),('active', 'in', [True,False])])[0]
@@ -26,7 +26,7 @@ class GduAcceso(http.Controller):
             return f"Universidad de Oriente<br />Verificación por Código QR <br />ID: {code} <br /> <span class='text-danger' style='color:red'>¡<i class='fa fa-ban'></i>Usuario ageno al centro!</span>"
 
 
-    @http.route('/gdu_acceso/qr2/<code>', auth='public')
+    @http.route('/gdu_acceso/qr/<code>', auth='public')
     def QR_scaner2(self, code, **kw):
         try:
             persona = http.request.env['gdu.base.persona'].sudo().search_read(
@@ -40,7 +40,7 @@ class GduAcceso(http.Controller):
                 print(f'tiene id {persona["id"]}')
                 http.request.env['gdu.acceso.logs'].sudo().create(
                     {'ci': code, 'fullname': f"{persona['nombre']} {persona['apellidos']}"})
-                return request.render('gdu_acceso.qr_page', {'persona': persona})
+                return request.render('gdu_acceso.qr_page', {'persona': persona, 'code': code})
             else:
                 return request.render('gdu_acceso.qr_page', {'persona': None, 'code': code})
         except:
