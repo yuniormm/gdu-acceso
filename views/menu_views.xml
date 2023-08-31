@@ -16,7 +16,9 @@
               name="Logs de Acceso"
               parent="menu_gduacceso_root"
               action="action_gduacceso_logs_view"
-              sequence="5"/>
+              sequence="5"
+              groups="base.group_user,base.group_system"/>
+
     <menuitem id="menu_gduacceso_wizard"
               name="Escaner wizard"
               action="action_gduacceso_wizard"

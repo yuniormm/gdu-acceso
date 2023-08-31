@@ -5,10 +5,12 @@
             <field name="name">view.gduacceso.logs.tree</field>
             <field name="model">gdu.acceso.logs</field>
             <field name="arch" type="xml">
-                <!--<button name="print_report" type="action" string="Print" class="eo_highlight"/>-->
+                <tree string="Historial de acceso"><!--<button name="print_report" type="action" string="Print" class="eo_highlight"/>-->
                 <button name="f_search" string="BuscarA" class="oe_highlight" type="object"/>
-                <tree string="Historial de acceso">
+
                     <field name="ci"/>
+                    <field name="fullname"/>
+                    <field name="hora_acceso"/>
                 </tree>
             </field>
         </record>
@@ -27,7 +29,7 @@
             <field name="name">Historial de accesos</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">gdu.acceso.logs</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree</field>
         </record>
     </data>
 </odoo>

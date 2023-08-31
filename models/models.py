@@ -5,26 +5,19 @@ import logging
 import sys, numbers, string
 import json
 
-limit = sys.getrecursionlimit()
-
-_logger = logging.getLogger(__name__)
-
-_logger.info('getrecursionlimit %s' % limit)
 # Lista de acceso
 class Acceso(models.Model):
     _name = 'gdu.acceso.logs'
     _description = 'GDU Acceso Logs'
-    _rec_name = 'nombre'
-    nombre = fields.Char(string="Nombre")
-    pellidos = fields.Char(string="Apellidos")
+    _rec_name = 'fullname'
+    fullname = fields.Char(string="Nombre y Apellidos")
+    #nombre = fields.Char(string="Nombre")
+    #pellidos = fields.Char(string="Apellidos")
     area = fields.Char(string="Apellidos")
-    fecha_acceso = fields.Datetime('Fecha de acceso')
-    hora_entrada = fields.Datetime('Hora de entrada')
+    #time_access = fields.Datetime('Fecha de acceso')
+    hora_acceso = fields.Datetime('Hora de entrada', default=lambda self: fields.Datetime.now())
     ci = fields.Char(string="CI", size=11)
     # new_field = fields.Char(string="", required=False, )
-
-    def print_report(self):
-        return self.env.ref('gdu_acceso_logs_report').report_action(self)
 
 
 # Prueba de Escaneo
@@ -61,24 +54,39 @@ class Escaneo(models.TransientModel):
     @api.onchange('cod_barras')
     def onchange_cod_barras(self):
         texthtml = ""
-        _logger.info('Entro al onchange')
+
         for record in self:
             if str(record.cod_barras).isnumeric() and len(record.cod_barras)==11:
                 #_logger.info('Entro al if, cod_barras %s' % record.cod_barras)
                 #_logger.info('Count, cod_barras %s' % len(record.cod_barras))
-                persona = self.env['gdu.base.persona'].search([('ci', '=', str(record.cod_barras))])
-
-                if(persona.name):
-                    texthtml += "<p class='text-success'><i class='fa fa-user fa-2x'></i>"+str(persona.name)+"</p>"
-                    texthtml += "<p class='text-success'>" + str(persona.tipo_persona) + "</p>"
-                    texthtml += "<p class='text-success'>" + str(persona.area_id) + "</p>"
+                persona = self.env['gdu.base.persona'].search_read([('ci', '=', str(record.cod_barras)),('active', 'in', [True,False])])
+                active = False #if persona.active=="false" else True
+                print(persona)
+                persona=persona[0]
+                print(persona)
+                print(type(persona))
+                if(len(persona['name'])>1):
+                    texthtml += "<p class='text-success'><i class='fa fa-user fa-2x'></i>"+str(persona['name'])+"</p>"
+                    if persona['tipo_persona'] == 'Trabajador':
+                        if persona['es_profesor']:
+                            texthtml += "<p class='text-success'>Profesor</p>"
+                        else:
+                            texthtml += "<p class='text-success'>Trabajador</p>"
+                    else:
+                        texthtml += "<p class='text-success'>Estudiante</p>"
+                        if persona['becado']:
+                            texthtml += "<p class='text-success'>Becado</p>"
+                    #texthtml += "<p class='text-success'>" + str(persona['area_id']) + "</p>"
+                    #print("active= ", bool(active))
+                    if not persona['active']:
+                        texthtml += "<p class='text-danger'><i class='fa fa-ban'></i> Baja </p>"
                     record.html = texthtml
+                    if persona['active']:
+                        self.env['gdu.acceso.logs'].create({'ci': record.cod_barras, 'fullname': f"{persona['nombre']} {persona['apellidos']}"})
                     #record.nombre = persona.name
                 else:
                     texthtml += "No identificado"
                     record.html = texthtml
-
-                self.env['gdu.acceso.logs'].create({'ci': record.cod_barras})
                 record.cod_barras = ""
             else:
                 record.nombre = ""
@@ -103,3 +111,5 @@ class Escaneo(models.TransientModel):
 #     def _value_pc(self):
 #         for record in self:
 #             record.value2 = float(record.value) / 100
+
+

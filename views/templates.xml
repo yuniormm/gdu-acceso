@@ -1,5 +1,63 @@
 <odoo>
     <data>
+                <!--
+            Template rendering the external HTML support page
+        -->
+        <template id="qr_page" name="GDU Acceso : Página de verificación por código QR">
+            &lt;!DOCTYPE html&gt;
+            <html style="height: 100%">
+                <head>
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+                    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+                    <title><t t-esc="channel_name"/> GDU-Acceso. Comprobación por código QR.</title>
+
+                    <!-- Call the external Bundle to render the css, js, and js loader tags -->
+                     <!--<t t-raw="channel.script_external"/>-->
+
+                    <style type="text/css">
+                        .main {
+                            position: absolute;
+                            opacity: 0;
+                            top: 50%;
+                            width: 100%;
+                            margin-top: -150px;
+                            text-shadow: 0 1px 0 rgba(34, 52, 72, 0.2);
+                            text-align: center;
+                        }
+                        .main h1 {
+                            font-size: 54px;
+                        }
+                        .main div {
+                            font-style: italic;
+                        }
+                    </style>
+                    <link rel="stylesheet" type="text/css" href="/web/static/lib/fontawesome/css/font-awesome.css"/>
+                    <link rel="stylesheet" type="text/css" href="/web/static/lib/bootstrap/css/bootstrap.css"/>
+                </head>
+
+                <body>
+                     <div class="main" style="opacity: 1;">
+                        <t t-if="persona != None">
+                            <h4 class="channel_name">
+                                <t t-esc="persona['name']"/>
+                            </h4>
+                            <t t-if="persona['es_profesor']">
+                                <h3 class="channel_name"><i class="fa fa-user"></i> Profesor</h3>
+                            </t>
+
+                                <h3 class="channel_name">
+                                    <t t-if="persona['active']">Activo </t>
+                                    <t t-else=""><i class="fa fa-ban text-danger"></i> Baja</t>
+                                </h3>
+                        </t>
+                        <t t-if="persona == None">
+                            <h4 class="channel_name text-danger">¡Usuario no identificado!</h4>
+                        </t>
+                        <div>Universidad de Oriente <strong>2023</strong>.</div>
+                     </div>
+                </body>
+            </html>
+        </template>
 <!--
         <template id="listing">
           <ul>

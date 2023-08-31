@@ -10,34 +10,35 @@
                     <group>
                         <field name="cod_barras"/>
                     </group>
-                </form>
-                <xpath expr="//field[@name='cod_barras']" position="attributes">
-                    <attribute name="size">11</attribute>
-                    <attribute name="maxlength">11</attribute>
-                </xpath>
-                <xpath expr="//div[hasclass('o_list_view')]" position='before'>
-                    <button class="btn-sm btn-link mb4 fa fa-volume-control-phone"
-                            aria-label="Llamar"
-                            title="Llamar"
-                            style="font-size: 15px;"
-                    />
-                </xpath>
-                <xpath expr="//div[hasclass('o_form_nosheet')]" position="after">
-                    <br/>
-                    <br/>
-                    <span>aaaaaaaaaaaaaaaaaaaa</span>
-                    <span>bbbbbbbbbbbbbbbbbbb</span>
-                </xpath>
-                <xpath expr="//div[hasclass('o_form_nosheet')]" position="inside">
-                    <script>
-                        function limpia() {
+
+                    <xpath expr="//field[@name='cod_barras']" position="attributes">
+                        <attribute name="size">11</attribute>
+                        <attribute name="maxlength">11</attribute>
+                    </xpath>
+                    <xpath expr="//div[hasclass('o_list_view')]" position='before'>
+                        <button class="btn-sm btn-link mb4 fa fa-volume-control-phone"
+                                aria-label="Llamar"
+                                title="Llamar"
+                                style="font-size: 15px;"
+                        />
+                    </xpath>
+                    <xpath expr="//div[hasclass('o_form_nosheet')]" position="after">
+                        <br/>
+                        <br/>
+                        <span>aaaaaaaaaaaaaaaaaaaa</span>
+                        <span>bbbbbbbbbbbbbbbbbbb</span>
+                    </xpath>
+                    <xpath expr="//div[hasclass('o_form_nosheet')]" position="inside">
+                        <script>
+                            function limpia() {
                             //if (document.getElementsByName("cod_barras")[0].value){
-                            //    document.getElementsByName("cod_barras")[0].value = "";
+                            // document.getElementsByName("cod_barras")[0].value = "";
                             //}
-                        }
-                        //setInterval(limpia, 3000);
-                    </script>
-                </xpath>
+                            }
+                            //setInterval(limpia, 3000);
+                        </script>
+                    </xpath>
+                </form>
             </field>
         </record>
         <record id="view_gduacceso_escaner_tree" model="ir.ui.view">
