@@ -25,8 +25,8 @@
 
                 <body>
                     <div class="container">
-                      <div t-att-class="'bg-danger card' if persona==None else 'bg-success card'" style="width:400px; margin: 0 auto;">
-                        <div class="card-header">Resultado del chequeo por QR</div>
+                      <div t-att-class="'bg-danger card' if persona==None else 'bg-light card'" style="width:400px; margin: 0 auto;">
+                        <div class="card-header">Resultado del chequeo por código QR</div>
                         <div class="card-body">
                           <h4 class="card-title">ID: <t t-esc="code"></t> </h4>
                           <p class="card-text text-white">
@@ -34,12 +34,14 @@
                             <h4 class="channel_name">
                                 <t t-esc="persona['name']"/>
                             </h4>
-                            <t t-if="persona['es_profesor']">
-                                <h3 class="channel_name"><i class="fa fa-user"></i> Profesor</h3>
-                            </t>
+                                   <t t-if="persona['codigo_persona']==1"><h3><i class="fa fa-user"></i> Estudiante</h3></t>
+                                   <t t-if="persona['codigo_persona']==2"><h3><i class="fa fa-user"></i> Trabajador</h3></t>
+                                   <t t-if="persona['codigo_persona']==3"><h3><i class="fa fa-user"></i> Trabajador (Estudia)</h3></t>
+                                   <t t-if="persona['codigo_persona'] in [4,6]"><h3><i class="fa fa-user"></i> Profesor</h3></t>
+                                   <t t-if="persona['codigo_persona']==5"><h3><i class="fa fa-user"></i> Profesor (Estudia)</h3></t>
 
                                 <h3 class="channel_name">
-                                    <t t-if="persona['active']">Activo </t>
+                                    <t t-if="persona['active']"> <i class="fa fa-check-circle-o text-success"></i> Activo </t>
                                     <t t-else=""><i class="fa fa-ban text-danger"></i> Baja</t>
                                 </h3>
                         </t>
