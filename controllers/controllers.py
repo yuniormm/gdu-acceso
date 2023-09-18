@@ -30,8 +30,7 @@ class GduAcceso(http.Controller):
     def QR_scaner2(self, code, **kw):
         try:
             persona = http.request.env['gdu.base.persona'].sudo().search_read(
-                [('ci', '=', str(code)), ('active', 'in', [True, False])],
-                ['id','name','active','nombre','apellidos','es_profesor','codigo_persona'])[0]
+                [('ci', '=', str(code)), ('active', 'in', [True, False])])[0]
             print(persona['id'])
             print(f'tiene id {persona["id"]}')
             id = persona.get('id', 0)

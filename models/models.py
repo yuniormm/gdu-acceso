@@ -66,26 +66,37 @@ class Escaneo(models.TransientModel):
                 print(persona)
                 print(type(persona))
                 if(len(persona['name'])>1):
+                    texthtml += "<p class='text-secondary'>ID: " + str(record.cod_barras) + "</p>"
                     texthtml += "<p class='text-success'><i class='fa fa-user fa-2x'></i>"+str(persona['name'])+"</p>"
-                    if persona['tipo_persona'] == 'Trabajador':
-                        if persona['es_profesor']:
-                            texthtml += "<p class='text-success'>Profesor</p>"
-                        else:
-                            texthtml += "<p class='text-success'>Trabajador</p>"
+
+                    if persona['codigo_persona']==1:
+                        texthtml += "<p class='text-secondary'> Estudiante, Año: "+str(persona['estudiante_anno'])+"</p>"
+                    if "persona['codigo_persona']==2":
+                        texthtml += "<p class='text-secondary'> Trabajador </p>"
+                    if "persona['codigo_persona']==3":
+                        texthtml += "<p class='text-secondary'> Trabajador(Estudia) </p> "
+                    if "persona['codigo_persona'] in [4,6]":
+                        texthtml += "<p class='text-secondary'> Profesor </p> "
+                    if "persona['codigo_persona']==5":
+                        texthtml += "<p class='text-secondary'> Profesor(Estudia) </p> "
+
+                    if persona['estudiante_carrera']:
+                        texthtml += "<h5 class ='channel_name'><i class='fa fa-book text-info'></i>persona['estudiante_carrera']</h5>"
+                    if persona['active']:
+                        texthtml += "<h5 class ='channel_name'><i class='fa fa-check-circle-o text-success'></i> Activo</h5>"
                     else:
-                        texthtml += "<p class='text-success'>Estudiante</p>"
-                        if persona['becado']:
-                            texthtml += "<p class='text-success'>Becado</p>"
-                    #texthtml += "<p class='text-success'>" + str(persona['area_id']) + "</p>"
-                    #print("active= ", bool(active))
-                    if not persona['active']:
-                        texthtml += "<p class='text-danger'><i class='fa fa-ban'></i> Baja </p>"
+                        texthtml += "<h5 class ='channel_name'><i class='fa fa-ban text-danger'></i> Baja </h5>"
+                    if persona['becado']:
+                         texthtml += "<h5 class ='channel_name'><i class ='fa fa-check-circle-o text-success'></i> Becado </h5>"
+
+
                     record.html = texthtml
                     if persona['active']:
                         self.env['gdu.acceso.logs'].create({'ci': record.cod_barras, 'fullname': f"{persona['nombre']} {persona['apellidos']}"})
                     #record.nombre = persona.name
                 else:
-                    texthtml += "No identificado"
+                    texthtml += "ID:"+str(record.cod_barras)
+                    texthtml += "<span class='text-danger'><i class='fa fa-ban'>¡Sin identificación!</span>"
                     record.html = texthtml
                 record.cod_barras = ""
             else:
