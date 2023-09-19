@@ -59,29 +59,29 @@ class Escaneo(models.TransientModel):
             if str(record.cod_barras).isnumeric() and len(record.cod_barras)==11:
                 #_logger.info('Entro al if, cod_barras %s' % record.cod_barras)
                 #_logger.info('Count, cod_barras %s' % len(record.cod_barras))
-                persona = self.env['gdu.base.persona'].search_read([('ci', '=', str(record.cod_barras)),('active', 'in', [True,False])])
+                persona = self.env['gdu.base.persona'].search_read([('ci', '=', str(record.cod_barras)),('active', 'in', [True,False])]) or []
                 active = False #if persona.active=="false" else True
-                print(persona)
-                persona=persona[0]
-                print(persona)
-                print(type(persona))
-                if(len(persona['name'])>1):
-                    texthtml += "<p class='text-secondary'>ID: " + str(record.cod_barras) + "</p>"
-                    texthtml += "<p class='text-success'><i class='fa fa-user fa-2x'></i>"+str(persona['name'])+"</p>"
+                #id = persona[0].get('id', 0)
+                #print(persona)
+                #print(type(persona))
+                if len(persona):
+                    persona = persona[0]
+                    texthtml += "<p class='text-secundary'>" + str(record.cod_barras) + "</p>"
+                    texthtml += "<p class='text-success'><i class='fa fa-user fa-3x'></i><h4>"+str(persona['name'])+"</h4></p>"
 
                     if persona['codigo_persona']==1:
-                        texthtml += "<p class='text-secondary'> Estudiante, Año: "+str(persona['estudiante_anno'])+"</p>"
-                    if "persona['codigo_persona']==2":
-                        texthtml += "<p class='text-secondary'> Trabajador </p>"
-                    if "persona['codigo_persona']==3":
-                        texthtml += "<p class='text-secondary'> Trabajador(Estudia) </p> "
-                    if "persona['codigo_persona'] in [4,6]":
-                        texthtml += "<p class='text-secondary'> Profesor </p> "
-                    if "persona['codigo_persona']==5":
-                        texthtml += "<p class='text-secondary'> Profesor(Estudia) </p> "
+                        texthtml += "<p class='text-secundary'> Estudiante, Año: "+str(persona['estudiante_anno'])+"</p>"
+                    if persona['codigo_persona']==2:
+                        texthtml += "<p class='text-secundary'> Trabajador </p>"
+                    if persona['codigo_persona']==3:
+                        texthtml += "<p class='text-secundary'> Trabajador(Estudia) </p> "
+                    if persona['codigo_persona'] in [4,6]:
+                        texthtml += "<p class='text-secundary'> Profesor </p> "
+                    if persona['codigo_persona']==5:
+                        texthtml += "<p class='text-secundary'> Profesor(Estudia) </p> "
 
                     if persona['estudiante_carrera']:
-                        texthtml += "<h5 class ='channel_name'><i class='fa fa-book text-info'></i>persona['estudiante_carrera']</h5>"
+                        texthtml += "<h5 class ='channel_name'><i class='fa fa-book text-info'></i> "+str(persona['estudiante_carrera'])+"</h5>"
                     if persona['active']:
                         texthtml += "<h5 class ='channel_name'><i class='fa fa-check-circle-o text-success'></i> Activo</h5>"
                     else:
@@ -96,7 +96,7 @@ class Escaneo(models.TransientModel):
                     #record.nombre = persona.name
                 else:
                     texthtml += "ID:"+str(record.cod_barras)
-                    texthtml += "<span class='text-danger'><i class='fa fa-ban'>¡Sin identificación!</span>"
+                    texthtml += "<p class='text-danger'><i class='fa fa-ban'>¡Sin identificación!</p>"
                     record.html = texthtml
                 record.cod_barras = ""
             else:
