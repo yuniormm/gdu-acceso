@@ -34,20 +34,18 @@
                             <h5 class="channel_name text-dark">
                                 <i class="fa fa-user"></i> <t t-esc="persona['name']"/>
                             </h5>
-                                   <t t-if="persona['codigo_persona']==1"><h3>Estudiante, Año: <t t-esc="persona['estudiante_anno']"/></h3></t>
-                                   <t t-if="persona['codigo_persona']==2"><h3> Trabajador</h3></t>
-                                   <t t-if="persona['codigo_persona']==3"><h3> Trabajador (Estudia)</h3></t>
-                                   <t t-if="persona['codigo_persona'] in [4,6]"><h3> Profesor</h3></t>
-                                   <t t-if="persona['codigo_persona']==5"><h3> Profesor (Estudia)</h3></t>
-                                <t t-if="persona['estudiante_carrera']"> <h5 class="channel_name">
+                                   <t t-if="persona['is_student']"><h3>Estudiante, Año: <t t-esc="persona['career_year']"/></h3></t>
+                                   <t t-if="persona['is_work']"><h3> Trabajador</h3></t>
+                                   <t t-if="persona['is_professor']"><h3> Profesor</h3></t>
+                                <t t-if="persona['career_id']"> <h5 class="channel_name">
                                     <i class="fa fa-book text-info"></i>
-                                    <t t-esc="persona['estudiante_carrera']"/></h5>
+                                    <t t-esc="persona['career_id'][1]"/></h5>
                                 </t>
                                 <h5 class="channel_name">
                                     <t t-if="persona['active']"> <i class="fa fa-check-circle-o text-success"></i> Activo </t>
                                     <t t-else=""><i class="fa fa-ban text-danger"></i> Baja</t>
                                 </h5>
-                                <t t-if="persona['becado']"> <h5 class="channel_name"><i class="fa fa-check-circle-o text-success"></i> Becado </h5></t>
+                                <t t-if="persona['is_scholarship']"> <h5 class="channel_name"><i class="fa fa-check-circle-o text-success"></i> Becado </h5></t>
 
                         </t>
                         <t t-if="persona == None">

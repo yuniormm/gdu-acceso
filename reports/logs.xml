@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <report
-                id="gdu_acceso_logs_report"
-                model="gdu.acceso.logs"
-                string="GDU Acceso / Logs"
-                name="gdu_acceso.report_logs"
-                file="gdu_acceso.report_logs"
-                report_type="qweb-pdf"/>
-
+        <record id="gdu_acceso_logs_report" model="ir.actions.report">
+            <field name="name">GDU Acceso / Logs</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">gdu_acceso.report_logs</field>
+            <field name="report_file">gdu_acceso.report_logs</field>
+            <field name="binding_model_id" ref="model_gdu_acceso_logs"/>
+        </record>
         <template id="report_logs">
             <t t-call="web.html_container">
                 <t t-call="web.basic_layout">

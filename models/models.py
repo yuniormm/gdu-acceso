@@ -18,7 +18,24 @@ class Acceso(models.Model):
     hora_acceso = fields.Datetime('Hora de entrada', default=lambda self: fields.Datetime.now())
     ci = fields.Char(string="CI", size=11)
     # new_field = fields.Char(string="", required=False, )
+    def f_search(self):
+        persona = self.env['gdu.base.persona'].search([('ci', '=', str(self.cod_barras))])
+        #res.update({'warning': {'title': 'Warning !', 'message': 'Nombre: ' + str(persona.nombre)}})
+        #print('search()', persona, persona.nombre)
+        title = "Codigo de Barras"
+        message = "Persona encontrada: "+str(persona.nombre)
+        self.nombre = persona.nombre
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': title,
+                'message': message,
+                'sticky': False,
+            }
+        }
 
+        #return{'warning': {'title': 'Warning !', 'message': 'Nombre: ' + persona.nombre}}
 
 # Prueba de Escaneo
 class Escaneo(models.TransientModel):
@@ -59,7 +76,7 @@ class Escaneo(models.TransientModel):
             if str(record.cod_barras).isnumeric() and len(record.cod_barras)==11:
                 #_logger.info('Entro al if, cod_barras %s' % record.cod_barras)
                 #_logger.info('Count, cod_barras %s' % len(record.cod_barras))
-                persona = self.env['gdu.base.persona'].search_read([('ci', '=', str(record.cod_barras)),('active', 'in', [True,False])]) or []
+                persona = self.env['res.partner'].search_read([('carne_id', '=', str(record.cod_barras)),('active', 'in', [True,False])]) or []
                 active = False #if persona.active=="false" else True
                 #id = persona[0].get('id', 0)
                 #print(persona)
@@ -69,30 +86,27 @@ class Escaneo(models.TransientModel):
                     texthtml += "<p class='text-secundary'>" + str(record.cod_barras) + "</p>"
                     texthtml += "<p class='text-success'><i class='fa fa-user fa-3x'></i><h4>"+str(persona['name'])+"</h4></p>"
 
-                    if persona['codigo_persona']==1:
-                        texthtml += "<p class='text-secundary'> Estudiante, Año: "+str(persona['estudiante_anno'])+"</p>"
-                    if persona['codigo_persona']==2:
+                    if persona['is_student']:
+                        texthtml += "<p class='text-secundary'> Estudiante, Año: "+str(persona['career_year'])+"</p>"
+                    if persona['is_work']:
                         texthtml += "<p class='text-secundary'> Trabajador </p>"
-                    if persona['codigo_persona']==3:
-                        texthtml += "<p class='text-secundary'> Trabajador(Estudia) </p> "
-                    if persona['codigo_persona'] in [4,6]:
+                    if persona['is_professor']:
                         texthtml += "<p class='text-secundary'> Profesor </p> "
-                    if persona['codigo_persona']==5:
-                        texthtml += "<p class='text-secundary'> Profesor(Estudia) </p> "
 
-                    if persona['estudiante_carrera']:
-                        texthtml += "<h5 class ='channel_name'><i class='fa fa-book text-info'></i> "+str(persona['estudiante_carrera'])+"</h5>"
+                    if persona['career_id']:
+                        print(persona['career_id'])
+                        texthtml += "<h5 class ='channel_name'><i class='fa fa-book text-info'></i> "+str(persona['career_id'][1])+"</h5>"
                     if persona['active']:
                         texthtml += "<h5 class ='channel_name'><i class='fa fa-check-circle-o text-success'></i> Activo</h5>"
                     else:
                         texthtml += "<h5 class ='channel_name'><i class='fa fa-ban text-danger'></i> Baja </h5>"
-                    if persona['becado']:
+                    if persona['is_scholarship']:
                          texthtml += "<h5 class ='channel_name'><i class ='fa fa-check-circle-o text-success'></i> Becado </h5>"
 
 
                     record.html = texthtml
                     if persona['active']:
-                        self.env['gdu.acceso.logs'].create({'ci': record.cod_barras, 'fullname': f"{persona['nombre']} {persona['apellidos']}"})
+                        self.env['gdu.acceso.logs'].create({'ci': record.cod_barras, 'fullname': f"{persona['name']}"})
                     #record.nombre = persona.name
                 else:
                     texthtml += "ID:"+str(record.cod_barras)

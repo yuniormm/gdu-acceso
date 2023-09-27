@@ -29,16 +29,17 @@ class GduAcceso(http.Controller):
     @http.route('/gdu_acceso/qr/<code>', auth='public')
     def QR_scaner2(self, code, **kw):
         try:
-            persona = http.request.env['gdu.base.persona'].sudo().search_read(
-                [('ci', '=', str(code)), ('active', 'in', [True, False])])[0]
-            print(persona['id'])
-            print(f'tiene id {persona["id"]}')
+            persona = http.request.env['res.partner'].sudo().search_read(
+                [('carne_id', '=', str(code)), ('active', 'in', [True, False])])[0]
+            print(persona['carne_id'])
+            print(f'tiene id {persona["carne_id"]}')
             id = persona.get('id', 0)
             print(id)
             if id:
-                print(f'tiene id {persona["id"]}')
+                print(f'tiene carne_id {persona["carne_id"]}')
                 http.request.env['gdu.acceso.logs'].sudo().create(
-                    {'ci': code, 'fullname': f"{persona['nombre']} {persona['apellidos']}"})
+                    {'ci': code, 'fullname': f"{persona['name']}"}
+                )
                 return request.render('gdu_acceso.qr_page', {'persona': persona, 'code': code})
             else:
                 return request.render('gdu_acceso.qr_page', {'persona': None, 'code': code})
