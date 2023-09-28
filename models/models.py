@@ -109,8 +109,8 @@ class Escaneo(models.TransientModel):
                         self.env['gdu.acceso.logs'].create({'ci': record.cod_barras, 'fullname': f"{persona['name']}"})
                     #record.nombre = persona.name
                 else:
-                    texthtml += "ID:"+str(record.cod_barras)
-                    texthtml += "<p class='text-danger'><i class='fa fa-ban'>¡Sin identificación!</p>"
+                    texthtml += "<p>ID:"+str(record.cod_barras)+"</p>"
+                    texthtml += "<p class='text-danger h3'><i class='fa fa-ban'> ¡Usuario no identificado!</p>"
                     record.html = texthtml
                 record.cod_barras = ""
             else:
